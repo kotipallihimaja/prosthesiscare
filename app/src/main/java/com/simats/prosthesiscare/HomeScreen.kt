@@ -62,7 +62,11 @@ fun HomeScreen(
                     when (currentSubScreen) {
                         "notifications" -> NotificationScreen(
                             onBack = { currentSubScreen = null },
-                            onSettingsClick = { /* Handle settings */ }
+                            onSettingsClick = { currentSubScreen = "reminder_settings" }
+                        )
+                        "reminder_settings" -> ReminderSettingsScreen(
+                            onBack = { currentSubScreen = "notifications" },
+                            onSave = { currentSubScreen = "notifications" }
                         )
                         "daily_maintenance" -> DailyMaintenanceScreen(
                             onBack = { currentSubScreen = null },
