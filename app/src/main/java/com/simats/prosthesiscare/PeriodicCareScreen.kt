@@ -186,7 +186,7 @@ fun PeriodicCareScreen(
             )
 
             PeriodicChecklistItem(
-                icon = R.drawable.ic_search,
+                icon = R.drawable.ic_visibility,
                 text = "Inspect for cracks or damage",
                 isChecked = task3Checked,
                 onCheckedChange = { task3Checked = it }

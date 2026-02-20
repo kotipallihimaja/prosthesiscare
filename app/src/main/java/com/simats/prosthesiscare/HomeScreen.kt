@@ -60,6 +60,10 @@ fun HomeScreen(
             when (selectedTab) {
                 "home" -> {
                     when (currentSubScreen) {
+                        "notifications" -> NotificationScreen(
+                            onBack = { currentSubScreen = null },
+                            onSettingsClick = { /* Handle settings */ }
+                        )
                         "daily_maintenance" -> DailyMaintenanceScreen(
                             onBack = { currentSubScreen = null },
                             onComplete = { currentSubScreen = "maintenance_complete" }
@@ -116,6 +120,7 @@ fun HomeScreen(
                             onProscareClick = { currentSubScreen = "prosthesis_overview" },
                             onLearnCareClick = { selectedTab = "education" },
                             onHistoryClick = { selectedTab = "reminders" },
+                            onNotificationClick = { currentSubScreen = "notifications" },
                             onWarningSignsClick = { 
                                 selectedTab = "education"
                                 currentSubScreen = "warning_signs"
@@ -210,6 +215,7 @@ fun HomeScreen(
                     onProscareClick = {},
                     onLearnCareClick = { selectedTab = "education" },
                     onHistoryClick = { selectedTab = "reminders" },
+                    onNotificationClick = { currentSubScreen = "notifications" },
                     onWarningSignsClick = {
                         selectedTab = "education"
                         currentSubScreen = "warning_signs"
@@ -231,6 +237,7 @@ fun HomeContent(
     onProscareClick: () -> Unit,
     onLearnCareClick: () -> Unit,
     onHistoryClick: () -> Unit,
+    onNotificationClick: () -> Unit,
     onWarningSignsClick: () -> Unit
 ) {
     val scrollState = rememberScrollState()
@@ -241,7 +248,7 @@ fun HomeContent(
             .background(Color(0xFFF4F9F9))
             .verticalScroll(scrollState)
     ) {
-        Header(userName, primaryColor)
+        Header(userName, primaryColor, onNotificationClick)
         Body(
             primaryColor, 
             isDailyCleaningCompleted,
@@ -258,7 +265,7 @@ fun HomeContent(
 }
 
 @Composable
-fun Header(userName: String, primaryColor: Color) {
+fun Header(userName: String, primaryColor: Color, onNotificationClick: () -> Unit) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -274,7 +281,12 @@ fun Header(userName: String, primaryColor: Color) {
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Bold
                 )
-                Icon(painter = painterResource(id = R.drawable.ic_notifications_none), contentDescription = null, tint = Color.White)
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_notifications_none), 
+                    contentDescription = null, 
+                    tint = Color.White,
+                    modifier = Modifier.clickable { onNotificationClick() }
+                )
             }
             Spacer(modifier = Modifier.height(24.dp))
             Card(
