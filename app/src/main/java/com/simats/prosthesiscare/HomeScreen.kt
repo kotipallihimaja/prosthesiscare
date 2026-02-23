@@ -189,6 +189,10 @@ fun HomeScreen(
                                 currentSubScreen = null
                             }
                         )
+                        "language_accessibility" -> LanguageAccessibilityScreen(
+                            onBack = { currentSubScreen = null },
+                            onSave = { currentSubScreen = null }
+                        )
                         "settings" -> AccountSettingsScreen(
                             userName = currentName,
                             onBack = { currentSubScreen = null },
@@ -205,6 +209,7 @@ fun HomeScreen(
                             onBack = { selectedTab = "home" },
                             onEditClick = { currentSubScreen = "edit_profile" },
                             onProsthesisDetailsClick = { currentSubScreen = "update_prosthesis_profile" },
+                            onLanguageClick = { currentSubScreen = "language_accessibility" },
                             onLogout = onLogout
                         )
                     }
