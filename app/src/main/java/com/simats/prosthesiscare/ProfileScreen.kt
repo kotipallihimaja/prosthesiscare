@@ -33,6 +33,8 @@ fun ProfileScreen(
     onBack: () -> Unit,
     onEditClick: () -> Unit,
     onProsthesisDetailsClick: () -> Unit,
+    onLanguageClick: () -> Unit,
+    onPrivacyClick: () -> Unit,
     onLogout: () -> Unit
 ) {
     Scaffold(
@@ -134,8 +136,8 @@ fun ProfileScreen(
             SettingsItem(R.drawable.ic_person, "Edit Profile", onClick = onEditClick)
             SettingsItem(R.drawable.ic_shield_check, "Prosthesis Details", onClick = onProsthesisDetailsClick)
             SettingsItem(R.drawable.ic_call, "Emergency Contact", iconTint = Color.Red, onClick = {})
-            SettingsItem(R.drawable.ic_settings, "Language & Accessibility", onClick = {})
-            SettingsItem(R.drawable.ic_lock, "Privacy & Consent", onClick = {})
+            SettingsItem(R.drawable.ic_settings, "Language & Accessibility", onClick = onLanguageClick)
+            SettingsItem(R.drawable.ic_lock, "Privacy & Consent", onClick = onPrivacyClick)
             SettingsItem(R.drawable.ic_message, "Feedback & Support", onClick = {})
             SettingsItem(R.drawable.ic_info, "App Info", onClick = {})
 
